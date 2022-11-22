@@ -1,0 +1,3 @@
+include 'lwjgl3', 'lwjgl2', 'core', 'editor'
+
+

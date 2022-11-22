@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group 'gdx.awt'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.formdev:flatlaf-swingx:2.6'
+    implementation 'org.jdesktop:beansbinding:1.2.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+        api "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.crashinvaders.lml:gdx-autumn:$lmlVersion"
+        api "com.crashinvaders.lml:gdx-kiwi:$lmlVersion"
+        api "com.crashinvaders.vfx:gdx-vfx-core:$gdxVfxCoreVersion"
+        api "com.crashinvaders.vfx:gdx-vfx-effects:$gdxVfxEffectsVersion"
+        api "com.esotericsoftware:kryo:$kryoVersion"
+        api "com.github.crykn.guacamole:core:$guacamoleVersion"
+        api "com.github.crykn.guacamole:gdx:$guacamoleVersion"
+        api "com.github.czyzby:noise4j:$noise4jVersion"
+        api "com.github.fxgaming:gdx-psx:$gdxPsxVersion"
+        api "com.github.mgsx-dev.gdx-gltf:gltf:$gdxGltfVersion"
+        api "com.github.tommyettinger:anim8-gdx:$anim8Version"
+        api "com.github.tommyettinger:digital:$digitalVersion"
+        api "com.github.tommyettinger:funderby:$funderbyVersion"
+        api "com.github.tommyettinger:juniper:$juniperVersion"
+        api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
+        api "com.github.tommyettinger:regexodus:$regExodusVersion"
+        api "com.kotcrab.vis:vis-ui:$visUiVersion"
+        api "com.squidpony:squidlib-extra:$squidlibExtraVersion"
+        api "com.squidpony:squidlib-util:$squidlibUtilVersion"
+        api "com.squidpony:squidlib:$squidlibVersion"
+        api "com.sudoplay.joise:joise:$joiseVersion"
+        api "org.swinglabs.swingx:swingx-all:1.6.5-1"
+
+        implementation 'tablelayout:TableLayout:20050920'
+        implementation 'com.formdev:flatlaf:2.6'
+        implementation 'com.formdev:flatlaf-intellij-themes:2.6'
+        implementation 'com.formdev:flatlaf-swingx:2.6'
+        implementation 'com.badlogicgames.gdx:gdx-backend-lwjgl:1.11.0'
+        implementation 'com.badlogicgames.gdx:gdx-platform:1.11.0'
+
+
+    implementation project(':core')
+}

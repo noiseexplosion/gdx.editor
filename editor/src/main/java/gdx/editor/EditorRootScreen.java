@@ -78,7 +78,7 @@ public class EditorRootScreen extends com.badlogic.gdx.ScreenAdapter
 		stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 		physicsSystem = new BulletPhysicsSystem();
 		sceneManager = SetupUtils.EnvironmentFactory.quickSceneManagerSetup(log, toggleLogging);
-		Texture texture = new Texture("C:\\dev\\libGDX\\gdx.awt\\assets\\crosshairs\\Outline\\crosshair002.png");
+		Texture texture = new Texture("assets\\crosshairs\\Outline\\crosshair002.png");
 		crosshair = new Sprite(texture);
 		batch = new SpriteBatch();
 

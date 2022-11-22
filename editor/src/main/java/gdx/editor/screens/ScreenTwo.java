@@ -14,7 +14,6 @@ import com.badlogic.gdx.physics.bullet.collision.btBvhTriangleMeshShape;
 import com.badlogic.gdx.physics.bullet.collision.btTriangleMeshShape;
 import com.badlogic.gdx.utils.Array;
 import gdx.components.GameModel;
-import gdx.editor.EditorRootScreen;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.Scene;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
@@ -31,7 +30,7 @@ public class ScreenTwo extends EditorRootScreen
     public ScreenTwo(Game game) {
         super(game);
         ModelUtils.createRandomModel(gameModels, 20, physicsSystem);
-        SceneAsset houseAsset = new GLTFLoader().load(Gdx.files.internal("C:\\dev\\Assets\\.gltf\\corbusier\\corbusier.gltf"));
+        SceneAsset houseAsset = new GLTFLoader().load(Gdx.files.internal("assets\\models\\corbusier\\corbusier.gltf"));
 
         Array <MeshPart> meshParts = new Array<>();
         meshParts =houseAsset.scene.model.meshParts;

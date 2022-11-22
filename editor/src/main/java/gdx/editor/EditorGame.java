@@ -1,8 +1,7 @@
 package gdx.editor;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.physics.bullet.Bullet;
-import gdx.awt.bullet.screens.SelectScreen;
+import gdx.editor.screens.EditorScreenSelection;
 
 public class EditorGame extends Game
 {

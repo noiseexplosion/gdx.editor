@@ -10,7 +10,6 @@ import gdx.awt.gltf.terrain.HeightMapTerrain;
 import gdx.awt.gltf.terrain.Terrain;
 import gdx.components.GameModel;
 import gdx.components.ThirdPersonPlayerController;
-import gdx.editor.EditorRootScreen;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.Scene;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
@@ -39,23 +38,21 @@ public class ScreenOne extends EditorRootScreen implements AnimationController.A
         super(game);
 
 
-        SceneAsset gunAsset = new GLTFLoader().load(Gdx.files.internal("C:\\Users\\Jamie\\Desktop\\Character\\FPS\\Pistol.gltf"));
-        SceneAsset mageAsset = new GLTFLoader().load(Gdx.files.internal("C:\\Users\\Jamie\\Desktop\\Character\\Mage\\mage.gltf"));
-        SceneAsset playerAsset = new GLTFLoader().load(Gdx.files.internal("C:\\Users\\Jamie\\Desktop\\Character\\Character.gltf"));
-        SceneAsset houseAsset = new GLTFLoader().load(Gdx.files.internal("C:\\dev\\Assets\\.gltf\\corbusier\\corbusier.gltf"));
+        SceneAsset gunAsset = new GLTFLoader().load(Gdx.files.internal("assets\\models\\FPS\\Pistol.gltf"));
+
+        SceneAsset playerAsset = new GLTFLoader().load(Gdx.files.internal("assets\\models\\Character\\Character.gltf"));
+        SceneAsset houseAsset = new GLTFLoader().load(Gdx.files.internal("assets\\models\\corbusier\\corbusier.gltf"));
         controller=new ThirdPersonPlayerController(camera);
         Gdx.input.setInputProcessor(controller);
 
 
-        mageModelScene = new Scene(mageAsset.scene);
+
         gunModelScene = new Scene(gunAsset.scene);
         playerModelScene = new Scene(playerAsset.scene);
         houseScene = new Scene(houseAsset.scene);
 
 
-        mageModel = new GameModel("mage", mageModelScene, mageAsset.scene.model,true);
-        //sceneManager.addScene(mageModel.scene);
-        gameModels.add(mageModel);
+
 
         gunModel = new GameModel("fiveseven", gunModelScene, gunAsset.scene.model,true);
         //sceneManager.addScene(gunModel.scene);
@@ -67,12 +64,10 @@ public class ScreenOne extends EditorRootScreen implements AnimationController.A
 
 
 
-        mageModel.translate(new Vector3(10, 0, 0));
         gunModel.translate(new Vector3(0, 0, 10));
         playerModel.translate(new Vector3(5, 0, 5));
 
         ModelInstance box = playerModel.box;
-        //ModelInstance box2 = mageModel.box;
 
 
 
@@ -83,7 +78,7 @@ public class ScreenOne extends EditorRootScreen implements AnimationController.A
 
 
 
-        terrain = new HeightMapTerrain(new Pixmap(Gdx.files.internal("C:\\dev\\libGDX\\gdx.awt\\assets\\heightmap.png")),20f);
+        terrain = new HeightMapTerrain(new Pixmap(Gdx.files.internal("assets\\images\\heightmap.png")),20f);
         terrainScene = new Scene(terrain.getModelInstance());
         GameModel terrainModel = new GameModel("Terrain",terrainScene,terrain.getModelInstance().model, true);
         gameModels.add(terrainModel);

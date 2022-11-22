@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.IntIntMap;
 
-import static gdx.editor.EditorRootScreen.gameModels;
+import static gdx.editor.screens.EditorRootScreen.gameModels;
 
 public class FirstPersonCameraController extends CameraController
 {

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
-import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.model.Animation;
 import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
@@ -20,13 +19,9 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.physics.bullet.collision.*;
 import com.badlogic.gdx.physics.bullet.dynamics.btRigidBody;
 import com.badlogic.gdx.utils.Array;
-import gdx.editor.EditorRootScreen;
 import gdx.physics.BulletPhysicsSystem;
-import gdx.awt.bullet.screens.BasicCollisionDetection;
 import gdx.components.GameModel;
-import net.mgsx.gltf.scene3d.attributes.PBRColorAttribute;
 import net.mgsx.gltf.scene3d.attributes.PBRTextureAttribute;
-import net.mgsx.gltf.scene3d.scene.Scene;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +159,7 @@ public class ModelUtils {
     public static ModelInstance createFloor(int width, int height, int depth) {
         ModelBuilder modelBuilder = new ModelBuilder();
         modelBuilder.begin();
-        Material material = loadTextureIntoMaterial("C:\\dev\\libGDX\\gdx.awt\\assets\\images\\Grid1024.png");
+        Material material = loadTextureIntoMaterial("assets\\images\\Grid1024.png");
         material.set(ColorAttribute.createDiffuse(Color.BLUE));
         MeshPartBuilder meshBuilder = modelBuilder.part("floor", GL20.GL_TRIANGLES, VertexAttribute.Position().usage |VertexAttribute.Normal().usage | VertexAttribute.TexCoords(0).usage, material);
 
@@ -184,7 +179,7 @@ public class ModelUtils {
     public static GameModel createRandomModel(Array<GameModel> gameModels){
         ModelBuilder modelBuilder = new ModelBuilder();
         modelBuilder.begin();
-        Material material = loadTextureIntoMaterial("C:\\dev\\libGDX\\gdx.awt\\assets\\images\\Grid1024.png");
+        Material material = loadTextureIntoMaterial("assets\\images\\Grid1024.png");
         material.set(ColorAttribute.createDiffuse(getRandomColor()));
         MeshPartBuilder builder = modelBuilder.part("box", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal, material);
         GameModel gameModel;
@@ -234,7 +229,7 @@ public class ModelUtils {
         log.info("creating game models; "+gameModels.size+" to begin");
         for(int i = 0; i < number; i++){
             GameModel model = ModelUtils.createRandomModel(gameModels);
-            replaceTexture(model.modelInstance, "C:\\dev\\libGDX\\gdx.awt\\assets\\images\\Grid8.png");
+            replaceTexture(model.modelInstance, "assets\\images\\Grid8.png");
             model.modelInstance.transform.translate(MathUtils.random(-50, 50), MathUtils.random(10, 20), MathUtils.random(-50, 50));
             ModelUtils.loadIntoPhysicsWorld(model.modelInstance, physicsSystem, model.shape);
 

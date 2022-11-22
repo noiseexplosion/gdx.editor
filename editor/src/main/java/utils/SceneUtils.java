@@ -3,7 +3,7 @@ package utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import gdx.components.GameModel;
-import gdx.components.GameObject;
+import gdx.editor.screens.EditorRootScreen;
 import net.mgsx.gltf.loaders.gltf.GLTFLoader;
 import net.mgsx.gltf.scene3d.scene.Scene;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
@@ -11,7 +11,6 @@ import net.mgsx.gltf.scene3d.scene.SceneManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Utility class for loading creating scenes and tracking them as game objects
@@ -22,7 +21,7 @@ public class SceneUtils {
      * @param name the name of the game model
      * @param path the path to the GLTF file
      * @param sceneManager root scene manager
-     * @param gameModels List of renderable game assets/scenes we plan on rendering; usually the {@link gdx.editor.EditorRootScreen#gameModels} array
+     * @param gameModels List of renderable game assets/scenes we plan on rendering; usually the {@link EditorRootScreen#gameModels} array
      */
     public static void addSceneFromPath(String name, String path, SceneManager sceneManager, Array<GameModel> gameModels) {
         SceneAsset sceneAsset = new GLTFLoader().load(Gdx.files.internal(path));
@@ -34,7 +33,7 @@ public class SceneUtils {
 
     /**
      * Retrieves a list of the names of all the game objects in the game model array. Necessary for serialization and generic accessing of game objects
-     * @param gameModels The array of {@link GameModel} objects we want to get the names of; usually the {@link gdx.editor.EditorRootScreen#gameModels} array
+     * @param gameModels The array of {@link GameModel} objects we want to get the names of; usually the {@link EditorRootScreen#gameModels} array
      * @return A list of the names of all the game objects in the game model array
      */
 

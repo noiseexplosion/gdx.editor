@@ -31,7 +31,7 @@ public class HeightMapTerrain extends Terrain{
         field.corner11.set(size, 0, size);
         field.magnitude.set(0f, magnitude, 0f);
         field.update();
-        Texture texture = new Texture(Gdx.files.internal("C:\\dev\\libGDX\\gdx.awt\\assets\\textures\\Seamless\\stk_generic_grassB.png"), true);
+        Texture texture = new Texture(Gdx.files.internal("assets\\textures\\Seamless\\stk_generic_grassB.png"), true);
         texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
@@ -39,7 +39,7 @@ public class HeightMapTerrain extends Terrain{
         textureAttribute.scaleU = 80f;
         textureAttribute.scaleV = 80f;
 
-        PBRTextureAttribute normalAttribute = PBRTextureAttribute.createNormalTexture(new Texture(Gdx.files.internal("C:\\dev\\libGDX\\gdx.game\\assets\\textures\\Dirt\\Dirt_01-Normal.png"), true));
+        PBRTextureAttribute normalAttribute = PBRTextureAttribute.createNormalTexture(new Texture(Gdx.files.internal("assets\\textures\\Dirt\\Dirt_01-Normal.png"), true));
         normalAttribute.scaleU = 80f;
         normalAttribute.scaleV = 80f;
 
@@ -69,7 +69,7 @@ public class HeightMapTerrain extends Terrain{
         field.corner11.set(size, 0, size);
         field.magnitude.set(0f, magnitude, 0f);
         field.update();
-        Texture texture = new Texture(Gdx.files.internal("C:\\dev\\libGDX\\gdx.awt\\assets\\textures\\Seamless\\stk_generic_grassB.png"), true);
+        Texture texture = new Texture(Gdx.files.internal("assets\\textures\\Seamless\\stk_generic_grassB.png"), true);
         texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
@@ -77,7 +77,7 @@ public class HeightMapTerrain extends Terrain{
         textureAttribute.scaleU = 80f;
         textureAttribute.scaleV = 80f;
 
-        PBRTextureAttribute normalAttribute = PBRTextureAttribute.createNormalTexture(new Texture(Gdx.files.internal("C:\\dev\\libGDX\\gdx.game\\assets\\textures\\Dirt\\Dirt_01-Normal.png"), true));
+        PBRTextureAttribute normalAttribute = PBRTextureAttribute.createNormalTexture(new Texture(Gdx.files.internal("assets\\textures\\Dirt\\Dirt_01-Normal.png"), true));
         normalAttribute.scaleU = 80f;
         normalAttribute.scaleV = 80f;
 

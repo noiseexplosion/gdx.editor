@@ -1,4 +1,4 @@
-package gdx.editor;
+package gdx.editor.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -13,10 +13,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.*;
-import gdx.editor.screens.ScreenThree;
-import gdx.editor.screens.ScreenOne;
-import gdx.editor.screens.ScreenTwo;
-import gdx.editor.screens.SettingsScreen;
 
 import java.util.logging.Logger;
 

@@ -1,7 +1,11 @@
 package gdx.components;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
@@ -10,6 +14,7 @@ import com.badlogic.gdx.physics.bullet.collision.btCollisionObject;
 import com.badlogic.gdx.physics.bullet.collision.btCollisionShape;
 import com.badlogic.gdx.utils.Disposable;
 import gdx.physics.BulletPhysicsSystem;
+import net.mgsx.gltf.scene3d.attributes.PBRTextureAttribute;
 import net.mgsx.gltf.scene3d.scene.Scene;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
 import net.mgsx.gltf.scene3d.scene.SceneModel;
@@ -37,6 +42,10 @@ public class GameModel extends GameObject implements Disposable {
         this.name = "Bullet Physics Object";
         this.shape = shape;
         modelInstance = new ModelInstance(model);
+        if(modelInstance.getMaterial("Material")!=null){
+            model.materials.add(new Material(PBRTextureAttribute.createBaseColorTexture(new Texture("assets/images/Color grading LUTs/Sepia.png"))));
+        }
+        modelInstance = new ModelInstance(model);
         scene = new Scene(modelInstance);
         body = new btCollisionObject();
         body.setCollisionShape(shape);
@@ -50,6 +59,11 @@ public class GameModel extends GameObject implements Disposable {
 
     public GameModel(String name,Scene scene, Model model,boolean createBox){
         modelInstance = new ModelInstance(model);
+        if(modelInstance.getMaterial("Material")!=null){
+            model.materials.add(new Material(ColorAttribute.createDiffuse(ModelUtils.getRandomColor())));
+        }
+        modelInstance = new ModelInstance(model);
+
         this.scene = new Scene(modelInstance);
         this.name = name;
         objBoundingBox = new BoundingBox();

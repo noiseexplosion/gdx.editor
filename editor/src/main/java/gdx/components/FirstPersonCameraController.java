@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.IntIntMap;
@@ -27,13 +29,16 @@ public class FirstPersonCameraController extends CameraController
 	private final Vector3 tmp = new Vector3();
 	private final Vector3 rayFrom = new Vector3();
 	private final Vector3 rayTo = new Vector3();
+	private Matrix4 gunTransform = new Matrix4();
+	private ModelInstance gun;
 
 
 
 
-	public FirstPersonCameraController(Camera camera)
+	public FirstPersonCameraController(Camera camera, ModelInstance gun)
 	{
 		this.camera = camera;
+		this.gun = gun;
 	}
 	@Override
 	public boolean keyDown(int keycode) {
@@ -77,6 +82,7 @@ public class FirstPersonCameraController extends CameraController
 
 	@Override
 	public void update(float deltaTime) {
+
 		if (keys.containsKey(FORWARD)) {
 			tmp.set(camera.direction).nor().scl(deltaTime * velocity);
 			camera.position.add(tmp);
@@ -92,6 +98,7 @@ public class FirstPersonCameraController extends CameraController
 		if (keys.containsKey(STRAFE_RIGHT)) {
 			tmp.set(camera.direction).crs(camera.up).nor().scl(deltaTime * velocity);
 			camera.position.add(tmp);
+
 		}
 		if (keys.containsKey(UP)) {
 			tmp.set(camera.up).nor().scl(deltaTime * velocity);
@@ -100,9 +107,12 @@ public class FirstPersonCameraController extends CameraController
 		if (keys.containsKey(DOWN)) {
 			tmp.set(camera.up).nor().scl(-deltaTime * velocity);
 			camera.position.add(tmp);
+
 		}
+
 		camera.update(true);
 	}
+
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		Ray ray = camera.getPickRay(screenX, screenY);
@@ -119,6 +129,7 @@ public class FirstPersonCameraController extends CameraController
 
 	}
 		return false;
-	}}
+	}
+}
 
 

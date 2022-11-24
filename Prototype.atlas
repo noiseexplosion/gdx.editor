@@ -1,0 +1,132 @@
+
+Prototype.png
+size: 8192, 4096
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+dark2z2
+  rotate: false
+  xy: 2, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+dark4x4
+  rotate: false
+  xy: 1028, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+dark8x8
+  rotate: false
+  xy: 2054, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+green2x2
+  rotate: false
+  xy: 3080, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+green4x4
+  rotate: false
+  xy: 4106, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+green8x8
+  rotate: false
+  xy: 5132, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+light2x2
+  rotate: false
+  xy: 6158, 4
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+light4x4
+  rotate: false
+  xy: 2, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+light8x8
+  rotate: false
+  xy: 1028, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+orange2x2
+  rotate: false
+  xy: 2054, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+orange4x4
+  rotate: false
+  xy: 3080, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+orange8x8
+  rotate: false
+  xy: 4106, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+purple2x2
+  rotate: false
+  xy: 5132, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+purple4x4
+  rotate: false
+  xy: 6158, 1030
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+purple8x8
+  rotate: false
+  xy: 2, 2056
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+red2x2
+  rotate: false
+  xy: 1028, 2056
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+red4x4
+  rotate: false
+  xy: 2054, 2056
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1
+red8x8
+  rotate: false
+  xy: 3080, 2056
+  size: 1024, 1024
+  orig: 1024, 1024
+  offset: 0, 0
+  index: -1

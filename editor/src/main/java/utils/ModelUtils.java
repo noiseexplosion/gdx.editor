@@ -2,6 +2,8 @@ package utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
@@ -32,6 +34,7 @@ import java.util.logging.Logger;
  */
 
 public class ModelUtils {
+
     static Logger log = Logger.getLogger(ModelUtils.class.getName());
     public static final Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.PURPLE, Color.ORANGE, Color.BROWN, Color.PINK, Color.LIME, Color.TEAL, Color.NAVY, Color.MAROON, Color.OLIVE, Color.GRAY, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.WHITE, Color.BLACK};
 
@@ -159,7 +162,7 @@ public class ModelUtils {
     public static ModelInstance createFloor(int width, int height, int depth) {
         ModelBuilder modelBuilder = new ModelBuilder();
         modelBuilder.begin();
-        Material material = loadTextureIntoMaterial("assets\\images\\Grid1024.png");
+        Material material = loadTextureIntoMaterial("assets\\images\\Grid1024.png",10);
         material.set(ColorAttribute.createDiffuse(Color.BLUE));
         MeshPartBuilder meshBuilder = modelBuilder.part("floor", GL20.GL_TRIANGLES, VertexAttribute.Position().usage |VertexAttribute.Normal().usage | VertexAttribute.TexCoords(0).usage, material);
 
@@ -176,12 +179,12 @@ public class ModelUtils {
      * Utility method to create a model instance and associate it with a collision shape. Must seperatly add to the world.
      * @param gameModels Array we use for tracking our game objects and their associated collision shapes.
      */
-    public static GameModel createRandomModel(Array<GameModel> gameModels){
+    public static GameModel createRandomModel(Array<GameModel> gameModels, TextureAtlas atlas){
         ModelBuilder modelBuilder = new ModelBuilder();
         modelBuilder.begin();
-        Material material = loadTextureIntoMaterial("assets\\images\\Grid1024.png");
+        Material material = loadTextureIntoMaterial("assets\\images\\Grid8.png",1);
         material.set(ColorAttribute.createDiffuse(getRandomColor()));
-        MeshPartBuilder builder = modelBuilder.part("box", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal, material);
+        MeshPartBuilder builder = modelBuilder.part("box", GL20.GL_TRIANGLES, VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttribute.TexCoords(0).usage, material);
         GameModel gameModel;
         btCollisionShape shape;
 
@@ -209,7 +212,7 @@ public class ModelUtils {
             ModelInstance modelInstance = new ModelInstance(model);
 
 
-            modelInstance.materials.get(0).set(ColorAttribute.createDiffuse(ModelUtils.getRandomColor()), ColorAttribute.createSpecular(ModelUtils.getRandomColor()));
+            //modelInstance.materials.get(0).set(ColorAttribute.createDiffuse(ModelUtils.getRandomColor()), ColorAttribute.createSpecular(ModelUtils.getRandomColor()));
             modelInstance.transform.setToTranslation(MathUtils.random(-10, 10), MathUtils.random(10, 20), MathUtils.random(-10, 10));
             gameModel = new GameModel(model, shape);
             gameModels.add(gameModel);
@@ -224,11 +227,11 @@ public class ModelUtils {
      * @param number The number of models & physics objects to create
      */
 
-    public static void createRandomModel(Array<GameModel> gameModels, int number,BulletPhysicsSystem physicsSystem)
+    public static void createRandomModel(Array<GameModel> gameModels, int number,BulletPhysicsSystem physicsSystem, TextureAtlas atlas)
     {
         log.info("creating game models; "+gameModels.size+" to begin");
         for(int i = 0; i < number; i++){
-            GameModel model = ModelUtils.createRandomModel(gameModels);
+            GameModel model = ModelUtils.createRandomModel(gameModels,atlas);
             replaceTexture(model.modelInstance, "assets\\images\\Grid8.png");
             model.modelInstance.transform.translate(MathUtils.random(-50, 50), MathUtils.random(10, 20), MathUtils.random(-50, 50));
             ModelUtils.loadIntoPhysicsWorld(model.modelInstance, physicsSystem, model.shape);
@@ -259,8 +262,18 @@ public class ModelUtils {
      * @return A material with a texture attribute
      */
 
-    public static Material loadTextureIntoMaterial(String filepath){
+    public static Material loadTextureIntoMaterial(String filepath,float scale){
         Texture texture= new Texture(Gdx.files.internal(filepath));
+        //Set uv scaling
+        texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        PBRTextureAttribute pbrTextureAttribute = new PBRTextureAttribute(PBRTextureAttribute.BaseColorTexture,texture);
+        pbrTextureAttribute.scaleU=scale;
+        pbrTextureAttribute.scaleV=scale;
+
+        return new Material(pbrTextureAttribute);
+    }
+    public static Material loadTextureAtlasIntoMaterial(TextureAtlas atlas, String name){
+        Texture texture= atlas.findRegion(name).getTexture();
         //Set uv scaling
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         PBRTextureAttribute pbrTextureAttribute = new PBRTextureAttribute(PBRTextureAttribute.BaseColorTexture,texture);
@@ -318,7 +331,41 @@ public class ModelUtils {
         public static void replaceTexture(Color color, ModelInstance modelInstance){
         Material material = new Material(ColorAttribute.createDiffuse(color));
         modelInstance.materials.set(0, material);
+}
+
+    public static Material createMaterialFromFile(String path){
+        Texture texture = new Texture(Gdx.files.internal("assets\\textures\\Seamless\\stk_generic_grassB.png"), true);
+        texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
+        texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+
+        PBRTextureAttribute textureAttribute = PBRTextureAttribute.createBaseColorTexture(texture);
+        textureAttribute.scaleU = 80f;
+        textureAttribute.scaleV = 80f;
 
 
-}}
+
+        Material material = new Material();
+        material.set(textureAttribute);
+        return material;
+    }
+    public static Material getMaterialWithRandomColor(){
+        int r = MathUtils.random(0,255);
+        int g = MathUtils.random(0,255);
+        int b = MathUtils.random(0,255);
+        //return a random color
+        return new Material(ColorAttribute.createDiffuse(new Color(r,g,b,1f)));
+    }
+    public static Material getRandomTextureFromAtlas(TextureAtlas textureAtlas,float scale){
+        TextureRegion textureRegion = textureAtlas.getRegions().random();
+        Texture texture = textureRegion.getTexture();
+        log.info("texture region: "+textureRegion.getTexture().toString());
+        texture.setFilter(Texture.TextureFilter.MipMapLinearLinear, Texture.TextureFilter.MipMapLinearLinear);
+        texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+
+        PBRTextureAttribute textureAttribute = PBRTextureAttribute.createBaseColorTexture(texture);
+        textureAttribute.scaleU = scale;
+        textureAttribute.scaleV = scale;
+        return new Material(textureAttribute);}
+
+}
 
